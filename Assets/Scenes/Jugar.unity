@@ -1280,7 +1280,7 @@ MonoBehaviour:
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 568672133}
+      - m_Target: {fileID: 633488242}
         m_TargetAssemblyTypeName: ShipScript, Assembly-CSharp
         m_MethodName: RotateShip
         m_Mode: 1
@@ -3823,17 +3823,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7941188170638473406, guid: a8441fd1d79faf045bdf64538f436dfe, type: 3}
   m_PrefabInstance: {fileID: 568672130}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &568672133 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9068890939803383812, guid: a8441fd1d79faf045bdf64538f436dfe, type: 3}
-  m_PrefabInstance: {fileID: 568672130}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568672131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97de7a7b58b128540b64a26eed7b9ceb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &568672136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7313586575315624452, guid: a8441fd1d79faf045bdf64538f436dfe, type: 3}
@@ -3951,7 +3940,7 @@ MonoBehaviour:
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 568672133}
+      - m_Target: {fileID: 1714710472}
         m_TargetAssemblyTypeName: ShipScript, Assembly-CSharp
         m_MethodName: RotateShip
         m_Mode: 1
@@ -4682,23 +4671,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 772813823958711682, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
       propertyPath: m_Size.y
-      value: 9.6542845
+      value: 9.654286
       objectReference: {fileID: 0}
     - target: {fileID: 772813823958711682, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
       propertyPath: m_Size.z
-      value: 95.95054
+      value: 90.88063
       objectReference: {fileID: 0}
     - target: {fileID: 772813823958711682, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
       propertyPath: m_Center.x
-      value: -0.18887678
+      value: -0.18887657
       objectReference: {fileID: 0}
     - target: {fileID: 772813823958711682, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
       propertyPath: m_Center.y
-      value: 4.8921447
+      value: 4.8921456
       objectReference: {fileID: 0}
     - target: {fileID: 772813823958711682, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
       propertyPath: m_Center.z
-      value: -4.4880247
+      value: -4.8681493
       objectReference: {fileID: 0}
     - target: {fileID: 1547805436056792306, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
       propertyPath: m_LocalScale.y
@@ -4762,7 +4751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4345389213420983074, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
       propertyPath: zOffset
-      value: 6.5
+      value: 0.065
       objectReference: {fileID: 0}
     - target: {fileID: 4345389213420983074, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
       propertyPath: shipSize
@@ -4835,6 +4824,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1547805436056792306, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
   m_PrefabInstance: {fileID: 633488235}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &633488242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4345389213420983074, guid: fa1ee6283c0235f469eb5d32767064ca, type: 3}
+  m_PrefabInstance: {fileID: 633488235}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633488236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97de7a7b58b128540b64a26eed7b9ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &639351553 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6846803181313361253, guid: 04eb1eea6c479f24ab8afc267f6a02d6, type: 3}
@@ -5606,6 +5606,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4426115891764702806, guid: 990c2013bd7ded74aa195059d408244f, type: 3}
   m_PrefabInstance: {fileID: 686880214}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &686880221 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2829677469651884491, guid: 990c2013bd7ded74aa195059d408244f, type: 3}
+  m_PrefabInstance: {fileID: 686880214}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686880215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97de7a7b58b128540b64a26eed7b9ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &694819644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8812,7 +8823,7 @@ MonoBehaviour:
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 568672133}
+      - m_Target: {fileID: 686880221}
         m_TargetAssemblyTypeName: ShipScript, Assembly-CSharp
         m_MethodName: RotateShip
         m_Mode: 1
@@ -9248,7 +9259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xOffset: 0
-  zOffset: 5
+  zOffset: 0.05
   rotar: {fileID: 0}
   shipSize: 4
   touchTiles: []
@@ -9478,7 +9489,7 @@ MonoBehaviour:
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 568672133}
+      - m_Target: {fileID: 1229283479}
         m_TargetAssemblyTypeName: ShipScript, Assembly-CSharp
         m_MethodName: RotateShip
         m_Mode: 1
@@ -12565,7 +12576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873073648213521876, guid: 990c2013bd7ded74aa195059d408244f, type: 3}
       propertyPath: m_Size.z
-      value: 94.05361
+      value: 88.78248
       objectReference: {fileID: 0}
     - target: {fileID: 1873073648213521876, guid: 990c2013bd7ded74aa195059d408244f, type: 3}
       propertyPath: m_Center.x
@@ -12577,7 +12588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873073648213521876, guid: 990c2013bd7ded74aa195059d408244f, type: 3}
       propertyPath: m_Center.z
-      value: -3.0325155
+      value: -2.4000058
       objectReference: {fileID: 0}
     - target: {fileID: 3902202361214989548, guid: 990c2013bd7ded74aa195059d408244f, type: 3}
       propertyPath: m_Name
@@ -12710,6 +12721,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4426115891764702806, guid: 990c2013bd7ded74aa195059d408244f, type: 3}
   m_PrefabInstance: {fileID: 1714710465}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1714710472 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2829677469651884491, guid: 990c2013bd7ded74aa195059d408244f, type: 3}
+  m_PrefabInstance: {fileID: 1714710465}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714710466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97de7a7b58b128540b64a26eed7b9ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1719262954
 PrefabInstance:
   m_ObjectHideFlags: 0
