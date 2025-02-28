@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipScript : MonoBehaviour
 {
@@ -8,12 +9,13 @@ public class ShipScript : MonoBehaviour
     public float zOffset = 0;
     private float nextYrotation = 90f;
     private GameObject clickedTile;
+    public Button rotar;
     int hitCount = 0;
     public int shipSize;
 
     private Material[] allMaterials;
 
-    List<GameObject> touchTiles = new List<GameObject>();
+    public List<GameObject> touchTiles = new List<GameObject>();
     List<Color> allColors = new List<Color>();
 
     private void Start()
@@ -32,6 +34,14 @@ public class ShipScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Tile"))
         {
             touchTiles.Add(collision.gameObject);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        // Verificar si el objeto colisionado es un tile
+        if (collision.gameObject.CompareTag("Tile"))
+        {
+            touchTiles.Remove(collision.gameObject);
         }
     }
     public void ClearTileList()
@@ -63,7 +73,7 @@ public class ShipScript : MonoBehaviour
     public void SetPosition(Vector3 pos)
     {
         ClearTileList();
-        transform.localPosition = new Vector3(pos.x + xOffset, 2, pos.z + zOffset);
+        transform.position = new Vector3(pos.x + xOffset, 2, pos.z + zOffset);
     }
     //Añadir un tile a la lista de tiles
     public void SetClickedTile(GameObject tile)

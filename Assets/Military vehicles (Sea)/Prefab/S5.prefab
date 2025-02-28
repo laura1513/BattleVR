@@ -1436,8 +1436,8 @@ GameObject:
   - component: {fileID: 9037583669716238331}
   - component: {fileID: 1866700612706830485}
   - component: {fileID: 630424703950807142}
-  - component: {fileID: 4543028622175212194}
   - component: {fileID: 5249589909885066776}
+  - component: {fileID: 7654237938760659809}
   m_Layer: 0
   m_Name: Rotar
   m_TagString: Tile
@@ -1454,7 +1454,7 @@ Transform:
   m_GameObject: {fileID: 5126520641109652132}
   serializedVersion: 2
   m_LocalRotation: {x: -0.66679263, y: 0, z: 0, w: 0.7452434}
-  m_LocalPosition: {x: 0, y: 43.9, z: 0}
+  m_LocalPosition: {x: 0, y: 40, z: 0}
   m_LocalScale: {x: 16, y: 9.9, z: 27.61}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1488,7 +1488,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf29d3fe7fc60014a89ebf7c4dc02aa4, type: 2}
+  - {fileID: 2100000, guid: 63942ab7fe41c99419c746c9bb03f43c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1612,13 +1612,13 @@ MonoBehaviour:
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 9068890939803383812}
+        m_TargetAssemblyTypeName: ShipScript, Assembly-CSharp
+        m_MethodName: RotateShip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1654,28 +1654,6 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
---- !u!114 &4543028622175212194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5126520641109652132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115f1a2a50d85cd4b9d6dad4c95622be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Interactable: {fileID: 0}
-  m_PokeCollider: {fileID: 8822785519154999304}
-  m_PokeConfiguration:
-    m_UseConstant: 1
-    m_ConstantValue:
-      m_PokeDirection: 3
-      m_InteractionDepthOffset: 0
-      m_EnablePokeAngleThreshold: 1
-      m_PokeAngleThreshold: 45
-    m_Variable: {fileID: 0}
 --- !u!114 &5249589909885066776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1694,6 +1672,19 @@ MonoBehaviour:
   m_ApplyIfChildIsTarget: 1
   m_ClampToMaxDistance: 0
   m_MaxDistance: 0
+--- !u!114 &7654237938760659809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5126520641109652132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &5869739067890374904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,7 +2212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xOffset: 0
   zOffset: 0
+  rotar: {fileID: 0}
   shipSize: 5
+  touchTiles: []
 --- !u!23 &2862268531019908677
 MeshRenderer:
   m_ObjectHideFlags: 0

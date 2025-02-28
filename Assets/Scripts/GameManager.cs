@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] ships;
     public EnemyIAScript enemyIAScript;
     public List<TileScript> allTileScript;
-    private ShipScript shipScript;
+    public ShipScript shipScript;
     private List<int[]> enemyShips;
     private int enemyShipCount = 5;
     private int playerShipCount = 5;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         barcoOut.gameObject.SetActive(false);
     }
     //Boton para cambiar de barco
-    private void NextShipClicked()
+    public void NextShipClicked()
     {
         if (!shipScript.OnGameBoard())
         {
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         //rotate ship
         /*if (Input.GetKeyDown(KeyCode.R))
         {
-            shipScript.RotateShip();
+            
         }*/
     }
 
@@ -111,10 +111,12 @@ public class GameManager : MonoBehaviour
     private void PlaceShip(GameObject tile)
     {
         // se coloca un barco en la casilla
+
         shipScript = ships[shipIndex].GetComponent<ShipScript>();
         shipScript.ClearTileList();
         Vector3 newVec = shipScript.GetOffsetVec(tile.transform.position);
-        ships[shipIndex].transform.localPosition = newVec;
+        Debug.Log(newVec);
+        ships[shipIndex].transform.position = newVec;
     }
     //Funcion para lanzar un misil
     public void CheckHit(GameObject tile)
@@ -264,5 +266,9 @@ public class GameManager : MonoBehaviour
     void Reanudar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void Rotar()
+    {
+        shipScript.RotateShip();
     }
 }
