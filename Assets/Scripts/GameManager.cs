@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     public Button nextBtn;
     public Button reanudarBtn;
     public Text topText;
-    public Text barcoOut;
     public Text playerShipText;
     public Text enemyShipText;
 
@@ -49,14 +48,12 @@ public class GameManager : MonoBehaviour
         nextBtn.onClick.AddListener(() => NextShipClicked());
         reanudarBtn.onClick.AddListener(() => Reanudar());
         enemyShips = enemyIAScript.PlaceEnemyShips();
-        barcoOut.gameObject.SetActive(false);
     }
     //Boton para cambiar de barco
     public void NextShipClicked()
     {
         if (!shipScript.OnGameBoard())
         {
-            barcoOut.gameObject.SetActive(true);
         }
         else
         {
@@ -64,13 +61,11 @@ public class GameManager : MonoBehaviour
             {
                 shipIndex++;
                 shipScript = ships[shipIndex].GetComponent<ShipScript>();
-                barcoOut.gameObject.SetActive(false);
             }
             else
             {
                 nextBtn.gameObject.SetActive(false);
                 puerto.SetActive(false);
-                barcoOut.gameObject.SetActive(false);
                 topText.text = "Lanza la bomba";
                 setupComplete = true;
                 for (int i = 0; i < ships.Length; i++) ships[i].SetActive(false);

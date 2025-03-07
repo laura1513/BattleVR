@@ -9,7 +9,7 @@ public class ShipScript : MonoBehaviour
     public float zOffset = 0;
     private float nextYrotation = 90f;
     private GameObject clickedTile;
-    public Button rotar;
+    public GameObject rotar;
     int hitCount = 0;
     public int shipSize;
 
@@ -84,6 +84,10 @@ public class ShipScript : MonoBehaviour
     public bool OnGameBoard()
     {
         // Verificar si el barco está en el tablero
+        if (touchTiles.Count == shipSize)
+        {
+            rotar.SetActive(false);
+        }
         return touchTiles.Count == shipSize;
     }
     // Verificar si el barco está hundido
