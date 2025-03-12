@@ -22,6 +22,7 @@ public class EnemyMissileScript : MonoBehaviour
         }
         else
         {
+            gameManager.EnemyMissed(targetTileLocation, targetTile);
             enemyIAScript.PauseAndEnd(targetTile);
         }
         Destroy(gameObject);

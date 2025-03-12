@@ -136,7 +136,6 @@ public class EnemyIAScript : MonoBehaviour
         GameObject tile = GameObject.Find("WaterCell (" + (guess + 1) + ")");
         guessGrid[guess] = 'm';
         Vector3 vec = tile.transform.position;
-        vec.y += 15;
         //Crea la bomba en la casilla
         GameObject missile = Instantiate(enemyBombPrefab, vec, enemyBombPrefab.transform.rotation);
         missile.GetComponent<EnemyMissileScript>().SetTarget(guess);
