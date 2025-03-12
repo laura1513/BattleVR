@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     public GameObject enemyMissilePrefab;
     public GameObject puerto;
     public GameObject firePrefab;
-    public GameObject waterPrefab;
 
     private bool setupComplete = false;
     private bool playerTurn = true;
@@ -39,8 +38,6 @@ public class GameManager : MonoBehaviour
     [Header("GameObjects")]
     private List<GameObject> playerFires = new List<GameObject>();
     private List<GameObject> enemyFires = new List<GameObject>();
-    private List<GameObject> enemyWater = new List<GameObject>();
-    private List<GameObject> playerWater = new List<GameObject>();
 
     private List<int> numeros = Enumerable.Range(0, 100).ToList();
     
@@ -176,7 +173,6 @@ public class GameManager : MonoBehaviour
         // Si no hubo impactos
         if (hitCount == 0)
         {
-            enemyWater.Add(Instantiate(waterPrefab, tile.transform.position, Quaternion.identity));
             topText.text = "Agua";
             tile.GetComponent<TileScript>().SetTileColor(1, new Color32(255, 255, 0, 0));
             tile.GetComponent<TileScript>().SwitchColors(1);
@@ -197,12 +193,6 @@ public class GameManager : MonoBehaviour
             enemyIAScript.JugadorHundido();
         }
         Invoke("EndEnemyTurn", 2f);
-    }
-
-    public void EnemyMissed(Vector3 tile, int tileNum)
-    {
-        tile.y += 0.2f;
-        playerWater.Add(Instantiate(waterPrefab, tile, Quaternion.identity));
     }
     private void EndPlayerTurn()
     {
