@@ -11,7 +11,10 @@ public class MissileScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        gameManager.CheckHit(collision.gameObject);
-        Destroy(gameObject);
+        if (collision.transform.CompareTag("Tile"))
+        {
+            gameManager.CheckHit(collision.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

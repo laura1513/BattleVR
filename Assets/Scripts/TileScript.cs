@@ -20,21 +20,6 @@ public class TileScript : MonoBehaviour
         hitColor[1] = gameObject.GetComponent<MeshRenderer>().material.color;
     }
 
-    /*void Update()
-    {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (Input.GetMouseButtonDown(0) && hit.collider.gameObject.name == gameObject.name)
-            {
-                if (missileHit == false)
-                {
-                    gameManager.TileClicked(hit.collider.gameObject);
-                }
-            }
-        }
-    }*/
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bomb"))

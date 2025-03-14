@@ -86,9 +86,15 @@ public class EnemyIAScript : MonoBehaviour
         if (hitIndex.Count > 1)
         {
             int diff = hitIndex[1] - hitIndex[0];
-            int posNeg = Random.Range(0, 2) * 2 - 1;
+            Debug.Log("Diff: " + diff);
+            //int posNeg = Random.Range(0, 2) * 2 - 1;
             int nextIndex = hitIndex[0] + diff;
-            // Verificar que el siguiente tile no esté ocupado
+            if (nextIndex > 99 || nextIndex < 0)
+            {
+                diff *= -1;
+                nextIndex = hitIndex[0] + diff;
+            }
+            Debug.Log("NextIndex: " + nextIndex);
             while (guessGrid[nextIndex] != 'o')
             {
                 if (guessGrid[nextIndex] == 'm' || nextIndex > 100 || nextIndex < 0)
@@ -136,6 +142,7 @@ public class EnemyIAScript : MonoBehaviour
         GameObject tile = GameObject.Find("WaterCell (" + (guess + 1) + ")");
         guessGrid[guess] = 'm';
         Vector3 vec = tile.transform.position;
+        vec.y += 15;
         //Crea la bomba en la casilla
         GameObject missile = Instantiate(enemyBombPrefab, vec, enemyBombPrefab.transform.rotation);
         missile.GetComponent<EnemyMissileScript>().SetTarget(guess);

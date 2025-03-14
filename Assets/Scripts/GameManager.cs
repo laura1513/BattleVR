@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] ships;
     public EnemyIAScript enemyIAScript;
     public List<TileScript> allTileScript;
-    public ShipScript shipScript;
+    private ShipScript shipScript;
     private List<int[]> enemyShips;
     private int enemyShipCount = 5;
     private int playerShipCount = 5;
@@ -31,16 +31,26 @@ public class GameManager : MonoBehaviour
     public GameObject enemyMissilePrefab;
     public GameObject puerto;
     public GameObject firePrefab;
+    //public GameObject waterPrefab;
 
     private bool setupComplete = false;
     private bool playerTurn = true;
 
     [Header("GameObjects")]
     private List<GameObject> playerFires = new List<GameObject>();
+    private List<GameObject> playerWater = new List<GameObject>();
     private List<GameObject> enemyFires = new List<GameObject>();
+    private List<GameObject> enemyWater = new List<GameObject>();
 
     private List<int> numeros = Enumerable.Range(0, 100).ToList();
-    
+
+    //Añadir sonidos de agua o explosion al impactar
+    public AudioSource audioSource;
+    public AudioClip waterSound;
+    public AudioClip explosionSound;
+
+    public float delay = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,24 +84,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //rotate ship
-        /*if (Input.GetKeyDown(KeyCode.R))
-        {
-            
-        }*/
-    }
-
     //Funcion para cuando se hace click en una casilla
     public void TileClicked(GameObject tile)
-    {
+    { 
+        Debug.Log("Hola");
         if (setupComplete && playerTurn)
         {
             // se lanza un misil
             Vector3 tilePos = tile.transform.position;
-            tilePos.y += 200;
             playerTurn = false;
             Instantiate(missilePrefab, tilePos, missilePrefab.transform.rotation);
         }
@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
                 // Verificar si el barco está hundido
                 if (hitCount == tileNumArray.Length)
                 {
+                    Sonidos(explosionSound);
                     enemyShipCount--;
                     topText.text = "Hundido";
                     enemyFires.Add(Instantiate(firePrefab, tile.transform.position, Quaternion.identity));
@@ -161,6 +162,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    Sonidos(explosionSound);
                     topText.text = "Tocado";
                     enemyFires.Add(Instantiate(firePrefab, tile.transform.position, Quaternion.identity));
                     tile.GetComponent<TileScript>().SetTileColor(1, new Color32(225, 0, 0, 225));
@@ -173,9 +175,11 @@ public class GameManager : MonoBehaviour
         // Si no hubo impactos
         if (hitCount == 0)
         {
+            Sonidos(waterSound);
             topText.text = "Agua";
             tile.GetComponent<TileScript>().SetTileColor(1, new Color32(255, 255, 0, 0));
             tile.GetComponent<TileScript>().SwitchColors(1);
+            //enemyWater.Add(Instantiate(waterPrefab, tile.transform.position, Quaternion.identity));
         }
         Invoke("EndPlayerTurn", 2f);
     }
@@ -194,6 +198,11 @@ public class GameManager : MonoBehaviour
         }
         Invoke("EndEnemyTurn", 2f);
     }
+    public void EnemyMissed(Vector3 tile, int tileNum)
+    {
+        tile.y += 0.2f;
+        //playerWater.Add(Instantiate(waterPrefab, tile, Quaternion.identity));
+    }
     private void EndPlayerTurn()
     {
         for (int i = 0; i < ships.Length; i++)
@@ -208,15 +217,15 @@ public class GameManager : MonoBehaviour
         {
             fire.SetActive(false);
         }
+        if (playerShipCount < 1)
+        {
+            topText.text = "Has perdido";
+        }
         enemyShipText.text = enemyShipCount.ToString();
         topText.text = "Turno del enemigo";
         enemyIAScript.NPCTurn();
         CollorAllTiles(0);
-        if (playerShipCount < 1)
-        {
-
-            topText.text = "Perdiste";
-        }
+        
     }
 
     public void EndEnemyTurn()
@@ -233,14 +242,15 @@ public class GameManager : MonoBehaviour
         {
             fire.SetActive(true);
         }
+        if (enemyShipCount < 1)
+        {
+            topText.text = "Has ganado";
+        }
         playerShipText.text = playerShipCount.ToString();
         topText.text = "Lanza el misil";
         playerTurn = true;
         CollorAllTiles(1);
-        if (enemyShipCount < 1)
-        {
-            topText.text = "Ganaste";
-        }
+        
     }
 
     private void CollorAllTiles(int colorIndex)
@@ -264,5 +274,10 @@ public class GameManager : MonoBehaviour
     public void Rotar()
     {
         shipScript.RotateShip();
+    }
+    public void Sonidos(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 }

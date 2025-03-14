@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShipScript : MonoBehaviour
 {
-   
+
     public float xOffset = 0;
     public float zOffset = 0;
     private float nextYrotation = 90f;
@@ -51,13 +51,13 @@ public class ShipScript : MonoBehaviour
     }
     public Vector3 GetOffsetVec(Vector3 tilePos)
     {
-        // Devolver un vector con la posición del tile
+        // Devolver un vector con la posiciï¿½n del tile
         return new Vector3(tilePos.x + xOffset, 2, tilePos.z + zOffset);
     }
-    //Rotación del barco
+    //Rotaciï¿½n del barco
     public void RotateShip()
     {
-        if(clickedTile == null)
+        if (clickedTile == null)
         {
             return;
         }
@@ -69,13 +69,13 @@ public class ShipScript : MonoBehaviour
         zOffset = temp;
         SetPosition(clickedTile.transform.position);
     }
-    //Colocar el barco en la posición del tile
+    //Colocar el barco en la posiciï¿½n del tile
     public void SetPosition(Vector3 pos)
     {
         ClearTileList();
         transform.position = new Vector3(pos.x + xOffset, 2, pos.z + zOffset);
     }
-    //Añadir un tile a la lista de tiles
+    //Aï¿½adir un tile a la lista de tiles
     public void SetClickedTile(GameObject tile)
     {
         clickedTile = tile;
@@ -83,14 +83,14 @@ public class ShipScript : MonoBehaviour
 
     public bool OnGameBoard()
     {
-        // Verificar si el barco está en el tablero
+        // Verificar si el barco estï¿½ en el tablero
         if (touchTiles.Count == shipSize)
         {
             rotar.SetActive(false);
         }
         return touchTiles.Count == shipSize;
     }
-    // Verificar si el barco está hundido
+    // Verificar si el barco estï¿½ hundido
     public bool ComprobarHundido()
     {
         hitCount++;
