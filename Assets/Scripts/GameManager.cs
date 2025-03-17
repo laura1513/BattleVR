@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour
 
     public float delay = 1f;
 
+    public GameObject imageGanar;
+    public GameObject imagePerder;
+    public GameObject general;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -190,7 +194,6 @@ public class GameManager : MonoBehaviour
     public void EnemyHitPlayer(Vector3 tile, int tileNum, GameObject hitObj)
     {
         enemyIAScript.MissileHit(tileNum);
-        tile.y += 0.2f;
         playerFires.Add(Instantiate(firePrefab, tile, Quaternion.identity));
         if (hitObj.GetComponent<ShipScript>().ComprobarHundido())
         {
@@ -221,6 +224,7 @@ public class GameManager : MonoBehaviour
         if (playerShipCount < 1)
         {
             topText.text = "Has perdido";
+            general.SetActive(false);
             Sonidos(perder);
             imagePerder.SetActive(true);
         }
@@ -248,6 +252,7 @@ public class GameManager : MonoBehaviour
         if (enemyShipCount < 1)
         {
             topText.text = "Has ganado";
+            general.SetActive(false);
             Sonidos(ganar);
             imageGanar.SetActive(true);
         }
