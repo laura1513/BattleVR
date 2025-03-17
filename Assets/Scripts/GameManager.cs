@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemyMissilePrefab;
     public GameObject puerto;
     public GameObject firePrefab;
-    //public GameObject waterPrefab;
+    public GameObject waterPrefab;
 
     private bool setupComplete = false;
     private bool playerTurn = true;
@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip waterSound;
     public AudioClip explosionSound;
+    public AudioClip ganar;
+    public AudioClip perder;
 
     public float delay = 1f;
 
@@ -179,7 +181,7 @@ public class GameManager : MonoBehaviour
             topText.text = "Agua";
             tile.GetComponent<TileScript>().SetTileColor(1, new Color32(255, 255, 0, 0));
             tile.GetComponent<TileScript>().SwitchColors(1);
-            //enemyWater.Add(Instantiate(waterPrefab, tile.transform.position, Quaternion.identity));
+            enemyWater.Add(Instantiate(waterPrefab, tile.transform.position, Quaternion.identity));
         }
         Invoke("EndPlayerTurn", 2f);
     }
@@ -200,8 +202,7 @@ public class GameManager : MonoBehaviour
     }
     public void EnemyMissed(Vector3 tile, int tileNum)
     {
-        tile.y += 0.2f;
-        //playerWater.Add(Instantiate(waterPrefab, tile, Quaternion.identity));
+        playerWater.Add(Instantiate(waterPrefab, tile, Quaternion.identity));
     }
     private void EndPlayerTurn()
     {
@@ -220,6 +221,8 @@ public class GameManager : MonoBehaviour
         if (playerShipCount < 1)
         {
             topText.text = "Has perdido";
+            Sonidos(perder);
+            imagePerder.SetActive(true);
         }
         enemyShipText.text = enemyShipCount.ToString();
         topText.text = "Turno del enemigo";
@@ -245,6 +248,8 @@ public class GameManager : MonoBehaviour
         if (enemyShipCount < 1)
         {
             topText.text = "Has ganado";
+            Sonidos(ganar);
+            imageGanar.SetActive(true);
         }
         playerShipText.text = playerShipCount.ToString();
         topText.text = "Lanza el misil";
