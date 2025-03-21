@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public GameObject firePrefab;
     public GameObject waterPrefab;
 
-    private bool setupComplete = false;
+    public bool setupComplete = false;
     private bool playerTurn = true;
 
     [Header("GameObjects")]
@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     public GameObject imagePerder;
     public GameObject general;
 
+    public static GameManager instance;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +67,12 @@ public class GameManager : MonoBehaviour
         reanudarBtn.onClick.AddListener(() => Reanudar());
         enemyShips = enemyIAScript.PlaceEnemyShips();
     }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     //Boton para cambiar de barco
     public void NextShipClicked()
     {
@@ -92,14 +100,15 @@ public class GameManager : MonoBehaviour
 
     //Funcion para cuando se hace click en una casilla
     public void TileClicked(GameObject tile)
-    { 
-        Debug.Log("Hola");
+    {
         if (setupComplete && playerTurn)
         {
             // se lanza un misil
+            Debug.Log("Lanzando misil");
             Vector3 tilePos = tile.transform.position;
             playerTurn = false;
             Instantiate(missilePrefab, tilePos, missilePrefab.transform.rotation);
+            Debug.Log("AAA");
         }
         else if (!setupComplete)
         {
@@ -187,6 +196,7 @@ public class GameManager : MonoBehaviour
             tile.GetComponent<TileScript>().SwitchColors(1);
             enemyWater.Add(Instantiate(waterPrefab, tile.transform.position, Quaternion.identity));
         }
+        Debug.Log("Hit count: " + hitCount);
         Invoke("EndPlayerTurn", 2f);
     }
 
@@ -209,14 +219,17 @@ public class GameManager : MonoBehaviour
     }
     private void EndPlayerTurn()
     {
+        Debug.Log("Fin del turno del jugador");
         for (int i = 0; i < ships.Length; i++)
         {
             ships[i].SetActive(true);
         }
+        Debug.Log("Activando barcos");
         foreach (GameObject fire in playerFires)
         {
             fire.SetActive(true);
         }
+        Debug.Log("Activando fuegos");
         foreach (GameObject fire in enemyFires)
         {
             fire.SetActive(false);

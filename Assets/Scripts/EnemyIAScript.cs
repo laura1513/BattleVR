@@ -94,14 +94,20 @@ public class EnemyIAScript : MonoBehaviour
                 diff *= -1;
                 nextIndex = hitIndex[0] + diff;
             }
-            Debug.Log("NextIndex: " + nextIndex);
-            while (guessGrid[nextIndex] != 'o')
+            int attempts = 0;
+            while (guessGrid[nextIndex] != 'o' && attempts < 100)
             {
-                if (guessGrid[nextIndex] == 'm' || nextIndex > 100 || nextIndex < 0)
+                Debug.Log("NextIndex: " + nextIndex);
+                if (guessGrid[nextIndex] == 'm' || nextIndex > 99 || nextIndex < 0)
                 {
                     diff *= -1;
                 }
                 nextIndex += diff;
+                attempts++;
+            }
+            if (attempts >= 100)
+            {
+                Debug.Log("No more attempts. Line 110");
             }
             guess = nextIndex;
         }
@@ -122,6 +128,7 @@ public class EnemyIAScript : MonoBehaviour
 
             while ((!onGrid || guessGrid[possibleGuess] != 'o') && closeTiles.Count > 0)
             {
+                Debug.Log("PossibleGuess: " + possibleGuess);
                 closeTiles.RemoveAt(index);
                 index = Random.Range(0, closeTiles.Count);
                 possibleGuess = hitIndex[0] + closeTiles[index];
@@ -133,7 +140,11 @@ public class EnemyIAScript : MonoBehaviour
         else
         {
             int nextIndex = Random.Range(0, 100);
-            while (guessGrid[nextIndex] != 'o') nextIndex = Random.Range(0, 100);
+            while (guessGrid[nextIndex] != 'o')
+            {
+                Debug.Log("NextIndex: " + nextIndex);
+                nextIndex = Random.Range(0, 100);
+            }
             nextIndex = GuessAgainCheck(nextIndex);
             nextIndex = GuessAgainCheck(nextIndex);
             guess = nextIndex;
@@ -169,7 +180,17 @@ public class EnemyIAScript : MonoBehaviour
         if (edgeCase || nearGuess) {
             newGuess = Random.Range(0, 100);
         }
-        while (guessGrid[newGuess] != 'o') newGuess = Random.Range(0, 100);
+        int attempts = 0;
+        while (guessGrid[newGuess] != 'o' && attempts < 100)
+        {
+            Debug.Log("NewGuess: " + newGuess);
+            newGuess = Random.Range(0, 100);
+            attempts++;
+        }
+        if (attempts >= 100)
+        {
+            Debug.Log("No more attempts. Line 192");
+        }   
         return newGuess;
     }
     public void MissileHit(int hit)

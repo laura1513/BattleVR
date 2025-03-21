@@ -30,10 +30,16 @@ public class ShipScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Verificar si el objeto colisionado es un tile
-        if (collision.gameObject.CompareTag("Tile"))
+        if (GameManager.instance.setupComplete)
         {
-            touchTiles.Add(collision.gameObject);
+            return;
+        } else
+        {
+            // Verificar si el objeto colisionado es un tile
+            if (collision.gameObject.CompareTag("Tile"))
+            {
+                touchTiles.Add(collision.gameObject);
+            }
         }
     }
     private void OnCollisionExit(Collision collision)
