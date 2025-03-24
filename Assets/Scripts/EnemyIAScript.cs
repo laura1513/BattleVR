@@ -4,7 +4,7 @@ using System.Linq;
 
 public class EnemyIAScript : MonoBehaviour
 {
-    char[] guessGrid;
+    public char[] guessGrid;
     List<int> potentialHits;
     List<int> currentHits;
     private int guess;
@@ -72,6 +72,7 @@ public class EnemyIAScript : MonoBehaviour
 
     public void NPCTurn()
     {
+        Debug.Log("Turno del NPC");
         List<int> hitIndex = new List<int>();
         // Verificar si hay un barco en la lista de arrays
         for (int i = 0; i < guessGrid.Length; i++)
@@ -80,6 +81,7 @@ public class EnemyIAScript : MonoBehaviour
             if (guessGrid[i] == 'h')
             {
                 hitIndex.Add(i);
+
             }
         }
         // Si hay más de un acierto, buscar el siguiente tile
@@ -104,6 +106,12 @@ public class EnemyIAScript : MonoBehaviour
                 }
                 nextIndex += diff;
                 attempts++;
+                // Verificar si nextIndex está dentro de los límites del array
+                if (nextIndex < 0 || nextIndex >= guessGrid.Length)
+                {
+                    Debug.Log("NextIndex fuera de los límites: " + nextIndex);
+                    break;
+                }
             }
             if (attempts >= 100)
             {
@@ -121,14 +129,12 @@ public class EnemyIAScript : MonoBehaviour
             closeTiles.Add(10);
 
             int index = Random.Range(0, closeTiles.Count);
-            Debug.Log("Index: " + index);
             int possibleGuess = hitIndex[0] + closeTiles[index];
             //Verificar que el posible tiro no se salga del tablero
             bool onGrid = possibleGuess > -1 && possibleGuess < 100;
 
             while ((!onGrid || guessGrid[possibleGuess] != 'o') && closeTiles.Count > 0)
             {
-                Debug.Log("PossibleGuess: " + possibleGuess);
                 closeTiles.RemoveAt(index);
                 index = Random.Range(0, closeTiles.Count);
                 possibleGuess = hitIndex[0] + closeTiles[index];
@@ -142,7 +148,6 @@ public class EnemyIAScript : MonoBehaviour
             int nextIndex = Random.Range(0, 100);
             while (guessGrid[nextIndex] != 'o')
             {
-                Debug.Log("NextIndex: " + nextIndex);
                 nextIndex = Random.Range(0, 100);
             }
             nextIndex = GuessAgainCheck(nextIndex);
@@ -153,7 +158,7 @@ public class EnemyIAScript : MonoBehaviour
         GameObject tile = GameObject.Find("WaterCell (" + (guess + 1) + ")");
         guessGrid[guess] = 'm';
         Vector3 vec = tile.transform.position;
-        vec.y += 15;
+        vec.y += 1;
         //Crea la bomba en la casilla
         GameObject missile = Instantiate(enemyBombPrefab, vec, enemyBombPrefab.transform.rotation);
         missile.GetComponent<EnemyMissileScript>().SetTarget(guess);
@@ -183,7 +188,6 @@ public class EnemyIAScript : MonoBehaviour
         int attempts = 0;
         while (guessGrid[newGuess] != 'o' && attempts < 100)
         {
-            Debug.Log("NewGuess: " + newGuess);
             newGuess = Random.Range(0, 100);
             attempts++;
         }

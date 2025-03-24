@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public GameObject imageGanar;
     public GameObject imagePerder;
     public GameObject general;
+    public GameObject objetos;
 
     public static GameManager instance;
 
@@ -106,6 +107,7 @@ public class GameManager : MonoBehaviour
             // se lanza un misil
             Debug.Log("Lanzando misil");
             Vector3 tilePos = tile.transform.position;
+            tilePos.y += 1;
             playerTurn = false;
             Instantiate(missilePrefab, tilePos, missilePrefab.transform.rotation);
             Debug.Log("AAA");
@@ -268,6 +270,7 @@ public class GameManager : MonoBehaviour
             general.SetActive(false);
             Sonidos(ganar);
             imageGanar.SetActive(true);
+            objetos.SetActive(false);
         }
         playerShipText.text = playerShipCount.ToString();
         topText.text = "Lanza el misil";
