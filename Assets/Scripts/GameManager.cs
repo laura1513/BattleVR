@@ -237,7 +237,6 @@ public class GameManager : MonoBehaviour
         }
         if (playerShipCount < 1)
         {
-            topText.text = "Has perdido";
             general.SetActive(false);
             Sonidos(perder);
             imagePerder.SetActive(true);
@@ -267,18 +266,17 @@ public class GameManager : MonoBehaviour
         }
         if (enemyShipCount < 1)
         {
-            topText.text = "Has ganado";
             general.SetActive(false);
             Sonidos(ganar);
             imageGanar.SetActive(true);
             objetos.SetActive(false);
             firePrefab.SetActive(false);
+
         }
         playerShipText.text = playerShipCount.ToString();
         topText.text = "Lanza el misil";
         playerTurn = true;
         CollorAllTiles(1);
-        
     }
 
     private void CollorAllTiles(int colorIndex)
