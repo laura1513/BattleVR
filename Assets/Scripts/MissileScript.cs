@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class MissileScript : MonoBehaviour
 {
-
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Tile"))

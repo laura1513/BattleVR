@@ -7,11 +7,6 @@ public class EnemyMissileScript : MonoBehaviour
     public Vector3 targetTileLocation;
     private int targetTile = -1;
 
-    //Añadir sonidos de agua o explosion al impactar
-    public AudioSource audioSource;
-    public AudioClip waterSound;
-    public AudioClip explosionSound;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +18,16 @@ public class EnemyMissileScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ship"))
         {
-            gameManager.Sonidos(explosionSound);
             gameManager.EnemyHitPlayer(targetTileLocation, targetTile, collision.gameObject);
+            Destroy(this.gameObject);
         }
         else
         {
-            gameManager.Sonidos(waterSound);
             gameManager.EnemyMissed(targetTileLocation, targetTile);
             enemyIAScript.PauseAndEnd(targetTile);
+            Destroy(this.gameObject);
         }
-        Destroy(gameObject);
+        
     }
     public void SetTarget(int target)
     {

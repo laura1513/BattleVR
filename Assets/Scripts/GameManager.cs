@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         nextBtn.onClick.AddListener(() => NextShipClicked());
         reanudarBtn.onClick.AddListener(() => Reanudar());
         enemyShips = enemyIAScript.PlaceEnemyShips();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Awake()
@@ -198,7 +199,6 @@ public class GameManager : MonoBehaviour
             tile.GetComponent<TileScript>().SwitchColors(1);
             enemyWater.Add(Instantiate(waterPrefab, tile.transform.position, Quaternion.identity));
         }
-        Debug.Log("Hit count: " + hitCount);
         Invoke("EndPlayerTurn", 2f);
     }
 
@@ -207,6 +207,7 @@ public class GameManager : MonoBehaviour
     {
         enemyIAScript.MissileHit(tileNum);
         playerFires.Add(Instantiate(firePrefab, tile, Quaternion.identity));
+        Sonidos(explosionSound);
         if (hitObj.GetComponent<ShipScript>().ComprobarHundido())
         {
             playerShipCount--;
@@ -218,20 +219,18 @@ public class GameManager : MonoBehaviour
     public void EnemyMissed(Vector3 tile, int tileNum)
     {
         playerWater.Add(Instantiate(waterPrefab, tile, Quaternion.identity));
+        Sonidos(waterSound);
     }
     private void EndPlayerTurn()
     {
-        Debug.Log("Fin del turno del jugador");
         for (int i = 0; i < ships.Length; i++)
         {
             ships[i].SetActive(true);
         }
-        Debug.Log("Activando barcos");
         foreach (GameObject fire in playerFires)
         {
             fire.SetActive(true);
         }
-        Debug.Log("Activando fuegos");
         foreach (GameObject fire in enemyFires)
         {
             fire.SetActive(false);
@@ -242,6 +241,8 @@ public class GameManager : MonoBehaviour
             general.SetActive(false);
             Sonidos(perder);
             imagePerder.SetActive(true);
+            objetos.SetActive(false);
+            firePrefab.SetActive(false);
         }
         enemyShipText.text = enemyShipCount.ToString();
         topText.text = "Turno del enemigo";
@@ -271,6 +272,7 @@ public class GameManager : MonoBehaviour
             Sonidos(ganar);
             imageGanar.SetActive(true);
             objetos.SetActive(false);
+            firePrefab.SetActive(false);
         }
         playerShipText.text = playerShipCount.ToString();
         topText.text = "Lanza el misil";
