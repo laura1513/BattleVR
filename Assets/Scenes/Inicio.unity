@@ -4875,6 +4875,7 @@ MonoBehaviour:
   imagePerder: {fileID: 610084022}
   general: {fileID: 791658367}
   objetos: {fileID: 1875640679}
+  listaFire: []
 --- !u!4 &742417683
 Transform:
   m_ObjectHideFlags: 0

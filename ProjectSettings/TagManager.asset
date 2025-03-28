@@ -9,6 +9,7 @@ TagManager:
   - Tile
   - Ship
   - Bomb
+  - Fire
   layers:
   - Default
   - TransparentFX
